@@ -6,7 +6,7 @@ export function Reviews() {
   return (
     <section id="reviews" className="bg-bg text-ink py-14 sm:py-20">
       <div className="mx-auto max-w-[1180px] px-6">
-        <p className="font-mono text-[0.8125rem] tracking-[0.14em] uppercase text-amber-deep font-semibold mb-3.5">
+        <p className="font-mono text-[0.8125rem] tracking-[0.14em] uppercase text-amber-text font-semibold mb-3.5">
           Customer Reviews
         </p>
         <h2 className="text-[clamp(1.75rem,3.6vw,2.75rem)] leading-[1.04] mb-9">

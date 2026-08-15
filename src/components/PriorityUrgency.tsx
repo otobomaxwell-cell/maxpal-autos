@@ -6,7 +6,7 @@ export function PriorityUrgency() {
   return (
     <section id="priority" className="bg-bg text-ink pt-14 pb-0 sm:pt-24">
       <div className="mx-auto max-w-[1180px] px-6 pb-14 sm:pb-16 border-t-4 border-amber">
-        <p className="font-mono text-[0.8125rem] tracking-[0.14em] uppercase text-amber-deep font-semibold mt-8 mb-3.5">
+        <p className="font-mono text-[0.8125rem] tracking-[0.14em] uppercase text-amber-text font-semibold mt-8 mb-3.5">
           Priority Mechanic Service in Derby
         </p>
         <h2 className="text-[clamp(1.75rem,3.6vw,2.75rem)] leading-[1.04] mb-5 max-w-[20ch]">
@@ -39,7 +39,7 @@ export function PriorityUrgency() {
 
           <div className="mt-8">
             <CtaLink href="#appointment" variant="dark">
-              Call to Check Today&apos;s Availability
+              Check Today&apos;s Availability
             </CtaLink>
           </div>
         </div>

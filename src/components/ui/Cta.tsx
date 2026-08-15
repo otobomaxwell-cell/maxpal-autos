@@ -4,7 +4,7 @@ export type CtaVariant = "primary" | "outline" | "dark";
 export type CtaSize = "default" | "sm";
 
 const base =
-  "inline-flex items-center gap-2.5 font-display font-bold uppercase tracking-wide rounded-[3px] transition-colors duration-150 focus-visible:outline focus-visible:outline-3 focus-visible:outline-amber focus-visible:outline-offset-2";
+  "inline-flex items-center gap-2.5 font-display font-bold uppercase tracking-wide rounded-[3px] transition-colors duration-150 focus-halo";
 
 const variantClasses: Record<CtaVariant, string> = {
   primary: "bg-amber text-amber-ink hover:bg-amber-deep",
@@ -51,6 +51,7 @@ export function CtaLink({
       className={ctaClasses(variant, size, `${block ? "justify-center w-full" : ""} ${className ?? ""}`)}
     >
       {children}
+      {external && <span className="sr-only"> (opens in a new tab)</span>}
     </a>
   );
 }
@@ -58,6 +59,12 @@ export function CtaLink({
 export type CtaButtonProps = CtaBaseProps & {
   readonly type: "submit" | "button";
   readonly disabled?: boolean;
+  // Visual-disabled without removing the button from the tab order — native
+  // `disabled` on a focused element drops focus to <body> when applied,
+  // which loses keyboard/AT context mid-submit. Callers doing async work
+  // (e.g. a submit handler) should guard re-entrancy themselves and use this
+  // instead of `disabled`.
+  readonly ariaDisabled?: boolean;
 };
 
 export function CtaButton({
@@ -67,13 +74,23 @@ export function CtaButton({
   className,
   block,
   disabled,
+  ariaDisabled,
   children,
 }: CtaButtonProps) {
+  const visuallyDisabled = disabled || ariaDisabled;
   return (
     <button
       type={type}
       disabled={disabled}
-      className={ctaClasses(variant, size, `${block ? "justify-center w-full" : ""} ${className ?? ""} disabled:opacity-60 disabled:cursor-not-allowed`)}
+      aria-disabled={ariaDisabled || undefined}
+      aria-busy={ariaDisabled || undefined}
+      className={ctaClasses(
+        variant,
+        size,
+        `${block ? "justify-center w-full" : ""} ${className ?? ""} ${
+          visuallyDisabled ? "opacity-60 cursor-not-allowed" : ""
+        }`,
+      )}
     >
       {children}
     </button>

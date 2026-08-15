@@ -16,17 +16,18 @@ export const business = {
   postcode: "DE24",
   serviceRadiusMiles: 10,
   hours: [
-    { label: "Monday – Saturday", value: "8:00 AM – 6:00 PM" },
+    { label: "Monday - Saturday", value: "8:00 AM - 6:00 PM" },
     { label: "Sunday", value: "Priority appointments only" },
   ] as const satisfies readonly BusinessHours[],
   priorityHoursNote:
     "Priority enquiries accepted until 9:00 PM during current summer hours. Availability varies depending on workload and the repair required.",
   // TODO: replace with the business's actual Google Business Profile review
   // link once available; this search query is a safe, working stand-in.
-  googleReviewsHref: "https://www.google.com/search?q=Maxpal+Autos+Ltd+555+Osmaston+Rd+Derby+reviews",
+  googleReviewsHref:
+    "https://www.google.com/search?q=Maxpal+Autos+Ltd+555+Osmaston+Rd+Derby+reviews",
   directionsHref:
     "https://www.google.com/maps/dir//Maxpal+Autos+Ltd,+555+Osmaston+Rd,+Allenton,+Derby+DE24+8NE/@52.9145861,-1.4699676,12z/data=!4m8!4m7!1m0!1m5!1m1!1s0x4879f1d19b26e6f9:0x648d54fce7b714b3!2m2!1d-1.4572917!2d52.8988537?hl=en-GB&entry=ttu",
-  notificationEmail: "info@maxpal.co.uk",
+  notificationEmail: process.env.BUSINESS_NOTIFICATION_EMAIL ?? "info@maxpal.co.uk",
 } as const;
 
 export type ServiceCategory = {
@@ -43,10 +44,18 @@ export const serviceCategories: readonly ServiceCategory[] = [
     items: ["Shock absorbers", "Coil springs", "Track rods", "Linkage"],
   },
   { id: "drivetrain", title: "Drivetrain & Starting", items: ["Drive shafts", "Starter motors"] },
-  { id: "servicing", title: "Servicing", items: ["Oil & filter", "Transmission fluid", "General servicing"] },
+  {
+    id: "servicing",
+    title: "Servicing",
+    items: ["Oil & filter", "Transmission fluid", "General servicing"],
+  },
   { id: "tyres", title: "Tyres", items: ["Puncture repair"] },
   { id: "aircon", title: "Air Conditioning", items: ["Gas top-up / recharge"] },
-  { id: "electronics", title: "Vehicle Electronics", items: ["Radio upgrades", "Dash cam installation"] },
+  {
+    id: "electronics",
+    title: "Vehicle Electronics",
+    items: ["Radio upgrades", "Dash cam installation"],
+  },
 ];
 
 export const priorityIdealFor: readonly string[] = [

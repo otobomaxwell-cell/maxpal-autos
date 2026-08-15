@@ -6,7 +6,11 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-50 bg-dark-2 border-b border-dark-line">
       <div className="mx-auto max-w-[1180px] px-6 flex items-center justify-between gap-4 py-3">
-        <a href="#" aria-label={`${business.name} – back to top`} className="flex items-center gap-3 text-dark-ink min-w-0">
+        <a
+          href="#"
+          aria-label={`${business.name} – back to top`}
+          className="flex items-center gap-3 text-dark-ink min-w-0 focus-halo rounded-[3px]"
+        >
           <svg className="w-9 h-9 flex-none" viewBox="0 0 40 40" aria-hidden="true">
             <polygon
               points="35.71,26.51 26.51,35.71 13.49,35.71 4.29,26.51 4.29,13.49 13.49,4.29 26.51,4.29 35.71,13.49"
@@ -37,13 +41,13 @@ export function SiteHeader() {
         <div className="hidden sm:flex items-center gap-5 flex-none">
           <a
             href={business.phoneHref}
-            className="flex items-center gap-2 text-[0.9375rem] font-semibold text-dark-ink-mute hover:text-amber whitespace-nowrap"
+            className="flex items-center gap-2 text-[0.9375rem] font-semibold text-dark-ink-mute hover:text-amber whitespace-nowrap focus-halo rounded-[3px]"
           >
             <PhoneIcon className="w-[18px] h-[18px] text-amber" />
             {business.phoneDisplay}
           </a>
           <CtaLink href="#appointment" size="sm">
-            Call Now
+            Book Now
           </CtaLink>
         </div>
       </div>

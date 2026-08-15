@@ -6,7 +6,7 @@ export function AppointmentSection() {
   return (
     <section id="appointment" className="bg-surface text-ink py-14 sm:py-20">
       <div className="mx-auto max-w-[1180px] px-6">
-        <p className="font-mono text-[0.8125rem] tracking-[0.14em] uppercase text-amber-deep font-semibold mb-3.5">
+        <p className="font-mono text-[0.8125rem] tracking-[0.14em] uppercase text-amber-text font-semibold mb-3.5">
           Need a Mechanic?
         </p>
         <h2 className="text-[clamp(1.75rem,3.6vw,2.75rem)] leading-[1.04] mb-5">
@@ -21,7 +21,10 @@ export function AppointmentSection() {
             <p className="font-mono text-[0.8125rem] tracking-[0.14em] uppercase text-amber font-semibold mb-3.5">
               Call Direct
             </p>
-            <a href={business.phoneHref} className="font-mono text-3xl font-semibold mb-3.5 hover:text-amber">
+            <a
+              href={business.phoneHref}
+              className="font-mono text-3xl font-semibold mb-3.5 hover:text-amber focus-halo rounded-[3px]"
+            >
               {business.phoneDisplay}
             </a>
             <p className="text-dark-ink-mute mb-7">Have your vehicle registration ready when you call.</p>

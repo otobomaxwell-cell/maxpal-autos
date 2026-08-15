@@ -26,7 +26,7 @@ export function Services() {
   return (
     <section id="services" className="bg-surface text-ink py-14 sm:py-20">
       <div className="mx-auto max-w-[1180px] px-6">
-        <p className="font-mono text-[0.8125rem] tracking-[0.14em] uppercase text-amber-deep font-semibold mb-3.5">
+        <p className="font-mono text-[0.8125rem] tracking-[0.14em] uppercase text-amber-text font-semibold mb-3.5">
           What We Do
         </p>
         <h2 className="text-[clamp(1.75rem,3.6vw,2.75rem)] leading-[1.04] mb-9">Our Services</h2>

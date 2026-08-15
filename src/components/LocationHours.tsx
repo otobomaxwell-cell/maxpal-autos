@@ -38,7 +38,7 @@ export function LocationHours() {
   return (
     <section id="location" className="bg-bg text-ink py-14 sm:py-20">
       <div className="mx-auto max-w-[1180px] px-6">
-        <p className="font-mono text-[0.8125rem] tracking-[0.14em] uppercase text-amber-deep font-semibold mb-3.5">
+        <p className="font-mono text-[0.8125rem] tracking-[0.14em] uppercase text-amber-text font-semibold mb-3.5">
           Workshop &amp; Service Area
         </p>
         <h2 className="text-[clamp(1.75rem,3.6vw,2.75rem)] leading-[1.04] mb-9">Find us in Derby</h2>
@@ -61,10 +61,13 @@ export function LocationHours() {
             </CtaLink>
 
             <table className="w-full max-w-[420px] text-[1.0625rem]">
+              <caption className="sr-only">Opening hours</caption>
               <tbody>
                 {business.hours.map((row) => (
                   <tr key={row.label} className="border-b border-line">
-                    <td className="py-3.5 font-semibold">{row.label}</td>
+                    <th scope="row" className="py-3.5 text-left font-semibold">
+                      {row.label}
+                    </th>
                     <td className="py-3.5 text-right font-mono">{row.value}</td>
                   </tr>
                 ))}

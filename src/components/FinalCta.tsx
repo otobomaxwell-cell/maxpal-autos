@@ -22,11 +22,14 @@ export function FinalCta() {
             <span className="w-11 h-11 rounded-full bg-dark-2 border border-dark-line flex items-center justify-center text-amber">
               <PhoneIcon className="w-[18px] h-[18px]" />
             </span>
-            <a href={business.phoneHref} className="font-mono text-2xl font-semibold hover:text-amber">
+            <a
+              href={business.phoneHref}
+              className="font-mono text-2xl font-semibold hover:text-amber focus-halo rounded-[3px]"
+            >
               {business.phoneDisplay}
             </a>
           </div>
-          <CtaLink href="#appointment">Call Now – Check Availability</CtaLink>
+          <CtaLink href="#appointment">Check Availability</CtaLink>
         </div>
 
         <p className="mt-14 pt-6 border-t border-dark-line font-mono text-[0.8125rem] tracking-[0.1em] uppercase text-dark-ink-mute">
