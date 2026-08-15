@@ -1,26 +1,54 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/*
+  Committed single-look brand palette (asphalt / steel / hazard amber).
+  Deliberately does not respond to prefers-color-scheme — a garage brand
+  doesn't reflow for OS dark mode, matching the design-mockup decision.
+*/
+@theme {
+  --color-dark: #17181c;
+  --color-dark-2: #202226;
+  --color-dark-line: #34363c;
+  --color-dark-ink: #ecedee;
+  --color-dark-ink-mute: #93969d;
+
+  --color-bg: #ececee;
+  --color-surface: #ffffff;
+  --color-surface-2: #f3f3f4;
+  --color-ink: #16171b;
+  --color-ink-mute: #565a62;
+  --color-line: #d5d7da;
+
+  --color-amber: #f2a31e;
+  --color-amber-deep: #c77e0e;
+  --color-amber-ink: #1b1300;
+  --color-red: #c43b2c;
+
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", "Roboto Mono", Consolas,
+    "Liberation Mono", monospace;
+  --font-display: var(--font-oswald), "Arial Narrow", Impact, sans-serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  body {
+    background-color: var(--color-dark);
+    color: var(--color-ink);
+    -webkit-font-smoothing: antialiased;
   }
-}
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+    text-wrap: balance;
+  }
+
+  section {
+    scroll-margin-top: 72px;
+  }
 }
