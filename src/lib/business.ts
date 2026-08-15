@@ -4,11 +4,15 @@ export type BusinessHours = {
 };
 
 export const business = {
-  name: "Stanhope Autoworks",
+  name: "Maxpal Autos Ltd",
+  // Legal-suffix-free name for display contexts (logo, hero, browser title)
+  // where "Ltd" reads clunky; business.name stays authoritative for the
+  // footer copyright line and the LocalBusiness JSON-LD schema.
+  shortName: "Maxpal Autos",
   tagline: "Professional Vehicle Repairs",
-  phoneDisplay: "01332 456 921",
-  phoneHref: "tel:+441332456921",
-  addressLines: ["14 Stanhope Street", "Derby, DE24 8JX"] as const,
+  phoneDisplay: "07931 306367",
+  phoneHref: "tel:+447931306367",
+  addressLines: ["555 Osmaston Rd, Allenton", "Derby, DE24 8NE"] as const,
   postcode: "DE24",
   serviceRadiusMiles: 10,
   hours: [
@@ -17,9 +21,12 @@ export const business = {
   ] as const satisfies readonly BusinessHours[],
   priorityHoursNote:
     "Priority enquiries accepted until 9:00 PM during current summer hours. Availability varies depending on workload and the repair required.",
-  googleReviewsHref: "#",
-  directionsHref: "#",
-  notificationEmail: "stanhope.autoworks@gmail.com",
+  // TODO: replace with the business's actual Google Business Profile review
+  // link once available; this search query is a safe, working stand-in.
+  googleReviewsHref: "https://www.google.com/search?q=Maxpal+Autos+Ltd+555+Osmaston+Rd+Derby+reviews",
+  directionsHref:
+    "https://www.google.com/maps/dir//Maxpal+Autos+Ltd,+555+Osmaston+Rd,+Allenton,+Derby+DE24+8NE/@52.9145861,-1.4699676,12z/data=!4m8!4m7!1m0!1m5!1m1!1s0x4879f1d19b26e6f9:0x648d54fce7b714b3!2m2!1d-1.4572917!2d52.8988537?hl=en-GB&entry=ttu",
+  notificationEmail: "info@maxpal.co.uk",
 } as const;
 
 export type ServiceCategory = {
@@ -63,24 +70,15 @@ export const whyUs: readonly string[] = [
 export type Review = {
   readonly quote: string;
   readonly name: string;
+  readonly isPlaceholder?: boolean;
 };
 
+// All three are placeholders (flagged via isPlaceholder) until real Google
+// reviews are pasted in — the original copy brief called this out explicitly.
 export const reviews: readonly Review[] = [
-  {
-    quote:
-      "Had a brake caliper seize on a Friday afternoon – called Stanhope and they got me in that evening under their priority service. Fair price, no messing about.",
-    name: "Daniel",
-  },
-  {
-    quote:
-      "Mobile mechanic came out to my workplace and swapped the starter motor in under an hour. Would've been stuck for days waiting at a main dealer.",
-    name: "Priya",
-  },
-  {
-    quote:
-      "Straightforward pricing before any work started, which is rare these days. My suspension was sorted in one visit.",
-    name: "Mark",
-  },
+  { quote: "Insert a genuine Google review here.", name: "Customer name", isPlaceholder: true },
+  { quote: "Insert a genuine Google review here.", name: "Customer name", isPlaceholder: true },
+  { quote: "Insert a genuine Google review here.", name: "Customer name", isPlaceholder: true },
 ];
 
 export type UrgencyOption = {

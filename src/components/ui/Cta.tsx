@@ -31,11 +31,25 @@ type CtaBaseProps = {
 
 export type CtaLinkProps = CtaBaseProps & {
   readonly href: string;
+  readonly external?: boolean;
 };
 
-export function CtaLink({ href, variant = "primary", size = "default", className, block, children }: CtaLinkProps) {
+export function CtaLink({
+  href,
+  variant = "primary",
+  size = "default",
+  className,
+  block,
+  external,
+  children,
+}: CtaLinkProps) {
   return (
-    <a href={href} className={ctaClasses(variant, size, `${block ? "justify-center w-full" : ""} ${className ?? ""}`)}>
+    <a
+      href={href}
+      target={external ? "_blank" : undefined}
+      rel={external ? "noopener noreferrer" : undefined}
+      className={ctaClasses(variant, size, `${block ? "justify-center w-full" : ""} ${className ?? ""}`)}
+    >
       {children}
     </a>
   );

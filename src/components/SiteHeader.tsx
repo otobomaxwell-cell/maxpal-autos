@@ -24,13 +24,13 @@ export function SiteHeader() {
               letterSpacing="0.5"
               fill="#f2a31e"
             >
-              SA
+              MA
             </text>
           </svg>
           <span className="font-display font-bold uppercase text-[0.9375rem] leading-tight tracking-wide">
-            Stanhope
+            Maxpal
             <br />
-            Autoworks
+            Autos
           </span>
         </a>
 

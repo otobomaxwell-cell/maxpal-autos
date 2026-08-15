@@ -23,9 +23,9 @@ export function Hero() {
           {business.tagline} &middot; Workshop &amp; Mobile Service &middot; Derby
         </p>
         <h1 className="text-[clamp(2.5rem,6.4vw,4.5rem)] leading-[0.98]">
-          Stanhope
+          Maxpal
           <br />
-          Autoworks
+          Autos
         </h1>
         <p className="mt-4.5 text-xl text-dark-ink-mute max-w-[40ch]">
           Priority appointments available when you can&apos;t wait days for a repair.

@@ -56,7 +56,7 @@ export function LocationHours() {
             <p className="text-ink-mute mb-6">
               Mobile service: approximately {business.serviceRadiusMiles}-mile service area around Derby.
             </p>
-            <CtaLink href={business.directionsHref} variant="outline" className="mb-10 inline-flex">
+            <CtaLink href={business.directionsHref} variant="outline" external className="mb-10 inline-flex">
               Get Directions
             </CtaLink>
 

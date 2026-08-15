@@ -14,11 +14,21 @@ export function Reviews() {
         </h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-          {reviews.map((review) => (
-            <div key={review.name} className="bg-surface border border-line rounded-[3px] p-6">
+          {reviews.map((review, index) => (
+            <div
+              key={index}
+              className={`bg-surface border rounded-[3px] p-6 ${
+                review.isPlaceholder ? "border-dashed border-red/60" : "border-line"
+              }`}
+            >
+              {review.isPlaceholder && (
+                <p className="font-mono text-[0.6875rem] tracking-[0.1em] uppercase text-red font-semibold mb-3">
+                  Placeholder – replace before launch
+                </p>
+              )}
               <div className="flex gap-0.5 text-amber-deep mb-3.5">
-                {Array.from({ length: 5 }).map((_, index) => (
-                  <StarIcon key={index} className="w-[18px] h-[18px]" />
+                {Array.from({ length: 5 }).map((_, starIndex) => (
+                  <StarIcon key={starIndex} className="w-[18px] h-[18px]" />
                 ))}
               </div>
               <p className="text-[1.0625rem] mb-4">&ldquo;{review.quote}&rdquo;</p>
@@ -28,7 +38,7 @@ export function Reviews() {
         </div>
 
         <div className="mt-8">
-          <CtaLink href={business.googleReviewsHref} variant="outline">
+          <CtaLink href={business.googleReviewsHref} variant="outline" external>
             See Our Google Reviews
           </CtaLink>
         </div>
