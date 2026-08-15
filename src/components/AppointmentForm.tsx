@@ -1,55 +1,44 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useActionState, useEffect, useRef } from "react";
+import { submitAppointment, type AppointmentActionState } from "@/lib/appointment-action";
 import { serviceTypeOptions, urgencyOptions } from "@/lib/business";
 import { CtaButton } from "./ui/Cta";
 
-type SubmissionState =
-  | { readonly status: "idle" }
-  | { readonly status: "submitting" }
-  | { readonly status: "success" }
-  | { readonly status: "error"; readonly message: string };
+const initialState: AppointmentActionState = { status: "idle" };
 
-const fieldClasses =
-  "w-full text-base px-3.5 py-3 border border-line rounded-[3px] bg-surface-2 text-ink focus:outline-none focus:border-amber-deep focus:ring-3 focus:ring-amber/25";
+const fieldClasses = "w-full text-base px-3.5 py-3 border border-line rounded-[3px] bg-surface-2 text-ink focus-halo";
 
 const labelClasses = "block text-[0.8125rem] font-semibold uppercase tracking-wide text-ink-mute mb-2";
 
+const requiredMark = (
+  <span aria-hidden="true" className="text-red">
+    {" "}
+    *
+  </span>
+);
+
 export function AppointmentForm() {
-  const [submission, setSubmission] = useState<SubmissionState>({ status: "idle" });
+  const [state, formAction, isPending] = useActionState(submitAppointment, initialState);
+  const formRef = useRef<HTMLFormElement>(null);
+  const successHeadingRef = useRef<HTMLHeadingElement>(null);
 
-  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    setSubmission({ status: "submitting" });
-
-    const formData = new FormData(event.currentTarget);
-    const payload = Object.fromEntries(formData.entries());
-
-    try {
-      const response = await fetch("/api/appointment", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
-
-      if (!response.ok) {
-        throw new Error("Request failed");
-      }
-
-      setSubmission({ status: "success" });
-      event.currentTarget.reset();
-    } catch {
-      setSubmission({
-        status: "error",
-        message: "Something went wrong sending your request. Please call us instead.",
-      });
+  useEffect(() => {
+    if (state.status === "success") {
+      formRef.current?.reset();
+      successHeadingRef.current?.focus();
     }
-  }
+  }, [state.status]);
 
-  if (submission.status === "success") {
+  if (state.status === "success") {
     return (
-      <div className="bg-surface p-8 sm:p-10 flex flex-col items-center text-center justify-center h-full">
-        <h3 className="text-xl tracking-wide mb-2.5">Request sent</h3>
+      <div
+        role="status"
+        className="bg-surface p-8 sm:p-10 flex flex-col items-center text-center justify-center h-full"
+      >
+        <h3 ref={successHeadingRef} tabIndex={-1} className="text-xl tracking-wide mb-2.5 focus:outline-none">
+          Request sent
+        </h3>
         <p className="text-ink-mute max-w-[42ch]">
           We&apos;ll contact you shortly to confirm availability and pricing. For the quickest
           response, feel free to call us directly.
@@ -59,12 +48,17 @@ export function AppointmentForm() {
   }
 
   return (
-    <form className="bg-surface p-8 sm:p-10" onSubmit={handleSubmit}>
-      <h3 className="text-xl tracking-wide mb-6">Or Request an Appointment</h3>
+    <form ref={formRef} className="bg-surface p-8 sm:p-10" action={formAction}>
+      <h3 className="text-xl tracking-wide mb-1">Or Request an Appointment</h3>
+      <p className="text-[0.8125rem] text-ink-mute mb-6">
+        Fields marked
+        {requiredMark} are required.
+      </p>
 
       <div className="mb-5">
         <label htmlFor="name" className={labelClasses}>
           Your name
+          {requiredMark}
         </label>
         <input id="name" name="name" type="text" autoComplete="name" required className={fieldClasses} />
       </div>
@@ -73,6 +67,7 @@ export function AppointmentForm() {
         <div>
           <label htmlFor="phone" className={labelClasses}>
             Phone number
+            {requiredMark}
           </label>
           <input id="phone" name="phone" type="tel" autoComplete="tel" required className={fieldClasses} />
         </div>
@@ -104,7 +99,7 @@ export function AppointmentForm() {
           <div className="flex flex-col gap-2">
             {urgencyOptions.map((option) => (
               <label key={option.value} className="flex items-center gap-2.5 text-[0.9375rem]">
-                <input type="radio" name="urgency" value={option.value} className="w-[17px] h-[17px] accent-amber-deep" />
+                <input type="radio" name="urgency" value={option.value} className="size-6 accent-amber-deep" />
                 {option.label}
               </label>
             ))}
@@ -115,7 +110,7 @@ export function AppointmentForm() {
           <div className="flex flex-col gap-2">
             {serviceTypeOptions.map((option) => (
               <label key={option.value} className="flex items-center gap-2.5 text-[0.9375rem]">
-                <input type="radio" name="serviceType" value={option.value} className="w-[17px] h-[17px] accent-amber-deep" />
+                <input type="radio" name="serviceType" value={option.value} className="size-6 accent-amber-deep" />
                 {option.label}
               </label>
             ))}
@@ -123,12 +118,14 @@ export function AppointmentForm() {
         </fieldset>
       </div>
 
-      <CtaButton type="submit" block disabled={submission.status === "submitting"}>
-        {submission.status === "submitting" ? "Sending…" : "Request an Appointment"}
+      <CtaButton type="submit" block ariaDisabled={isPending}>
+        {isPending ? "Sending…" : "Request an Appointment"}
       </CtaButton>
 
-      {submission.status === "error" && (
-        <p className="mt-3 text-sm text-red font-semibold">{submission.message}</p>
+      {state.status === "error" && (
+        <p role="alert" className="mt-3 text-sm text-red font-semibold">
+          {state.message}
+        </p>
       )}
 
       <p className="mt-4.5 text-[0.8125rem] text-ink-mute italic">
