@@ -82,26 +82,21 @@ export type Review = {
   readonly isPlaceholder?: boolean;
 };
 
-// All three are placeholders (flagged via isPlaceholder) until real Google
-// reviews are pasted in — the original copy brief called this out explicitly.
 export const reviews: readonly Review[] = [
   {
     quote:
       "Phoned this mechanic and he turned up to my house within 20 minutes on a Sunday evening! He figured the issue, and swiftly fixed it with no problems. Highly recommend.",
     name: "Homairah Khan",
-    isPlaceholder: true,
   },
   {
     quote:
       "They're a team of professional, reliable & highly trusted automobile mechanic based in derby. They ran a diagnostic on my car, fixed the problem and it was one of the best decision I made since I bought my car. Max Fix is an automobile genius.",
     name: "John Ojiebun (Bigjohny Da Talkative)",
-    isPlaceholder: true,
   },
   {
     quote:
       "Great service and staff are so organized. Heard they’re new and got a referral from a friend, I’d be visiting again and I sure recommend.",
     name: "Oluwasegun Odudimu",
-    isPlaceholder: true,
   },
 ];
 
