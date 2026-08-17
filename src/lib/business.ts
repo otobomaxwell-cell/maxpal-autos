@@ -21,10 +21,10 @@ export const business = {
   ] as const satisfies readonly BusinessHours[],
   priorityHoursNote:
     "Priority enquiries accepted until 9:00 PM during current summer hours. Availability varies depending on workload and the repair required.",
-  // TODO: replace with the business's actual Google Business Profile review
-  // link once available; this search query is a safe, working stand-in.
-  googleReviewsHref:
-    "https://www.google.com/search?q=Maxpal+Autos+Ltd+555+Osmaston+Rd+Derby+reviews",
+  googleReviewsHref: "https://www.google.com/maps?cid=7245540820705023155",
+  // Google Business Profile "write a review" short link, for post-service
+  // follow-ups (email/SMS) rather than this on-page reviews CTA.
+  googleWriteReviewHref: "https://g.page/r/CbMUt-f8VI1kEBE/review",
   directionsHref:
     "https://www.google.com/maps/dir//Maxpal+Autos+Ltd,+555+Osmaston+Rd,+Allenton,+Derby+DE24+8NE/@52.9145861,-1.4699676,12z/data=!4m8!4m7!1m0!1m5!1m1!1s0x4879f1d19b26e6f9:0x648d54fce7b714b3!2m2!1d-1.4572917!2d52.8988537?hl=en-GB&entry=ttu",
   notificationEmail: process.env.BUSINESS_NOTIFICATION_EMAIL ?? "info@maxpal.co.uk",
