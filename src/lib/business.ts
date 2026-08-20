@@ -115,7 +115,6 @@ export const urgencyOptions: readonly UrgencyOption[] = [
   { value: "24h", label: "Within 24 hours" },
   { value: "2-3d", label: "Within 2-3 days" },
   { value: "week", label: "This week" },
-  { value: "flexible", label: "Flexible / Just getting a quote" },
 ];
 
 export type ServiceTypeOption = {
