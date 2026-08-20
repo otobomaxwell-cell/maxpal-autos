@@ -56,6 +56,11 @@ export const serviceCategories: readonly ServiceCategory[] = [
     title: "Vehicle Electronics",
     items: ["Radio upgrades", "Dash cam installation"],
   },
+  {
+    id: "diagnostics",
+    title: "Vehicle Diagnosis",
+    items: ["Fault code diagnostics", "Warning light checks"],
+  },
 ];
 
 export const priorityIdealFor: readonly string[] = [

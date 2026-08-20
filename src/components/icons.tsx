@@ -156,6 +156,16 @@ export function WaveIcon({ className }: IconProps) {
   );
 }
 
+export function ScanIcon({ className }: IconProps) {
+  return (
+    <StrokeIcon className={className}>
+      <circle cx="10.5" cy="10.5" r="6.5" />
+      <path d="M7.5 10.5h2l1-2.5 1.5 5 1-2.5h2" />
+      <line x1="15.3" y1="15.3" x2="20.5" y2="20.5" />
+    </StrokeIcon>
+  );
+}
+
 export function VanIcon({ className }: IconProps) {
   return (
     <StrokeIcon className={className}>

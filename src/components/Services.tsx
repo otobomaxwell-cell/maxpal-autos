@@ -4,6 +4,7 @@ import {
   BrakeIcon,
   DropIcon,
   GearIcon,
+  ScanIcon,
   SnowIcon,
   SpringIcon,
   TyreIcon,
@@ -20,6 +21,7 @@ const iconByCategory: Record<string, ComponentType<IconProps>> = {
   tyres: TyreIcon,
   aircon: SnowIcon,
   electronics: WaveIcon,
+  diagnostics: ScanIcon,
 };
 
 export function Services() {
