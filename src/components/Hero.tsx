@@ -22,10 +22,8 @@ export function Hero() {
         <p className="font-mono text-[0.8125rem] tracking-[0.14em] uppercase text-amber font-semibold mb-3.5">
           {business.tagline} &middot; Workshop &amp; Mobile Service &middot; Derby
         </p>
-        <h1 className="text-[clamp(2.5rem,6.4vw,4.5rem)] leading-[0.98]">
-          Maxpal
-          <br />
-          Autos
+        <h1 className="text-[clamp(2.25rem,5vw,3.75rem)] leading-[1.02] max-w-[16ch]">
+          Need Your Car Repaired Quickly?
         </h1>
         <p className="mt-4.5 text-xl text-dark-ink-mute max-w-[40ch]">
           Priority appointments available when you can&apos;t wait days for a repair.

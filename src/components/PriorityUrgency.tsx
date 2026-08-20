@@ -10,7 +10,7 @@ export function PriorityUrgency() {
           Priority Mechanic Service in Derby
         </p>
         <h2 className="text-[clamp(1.75rem,3.6vw,2.75rem)] leading-[1.04] mb-5 max-w-[20ch]">
-          Need Your Car Repaired Quickly?
+          Priority Appointments for Urgent Repairs
         </h2>
         <p className="text-lg text-ink-mute max-w-[62ch]">
           We provide professional workshop and selected mobile mechanic services for Derby and the
