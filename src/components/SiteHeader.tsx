@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { business } from "@/lib/business";
 import { PhoneIcon } from "./icons";
 import { CtaLink } from "./ui/Cta";
@@ -6,8 +7,8 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-50 bg-dark-2 border-b border-dark-line">
       <div className="mx-auto max-w-[1180px] px-6 flex items-center justify-between gap-4 py-3">
-        <a
-          href="#"
+        <Link
+          href="/"
           aria-label={`${business.name} – back to top`}
           className="flex items-center gap-3 text-dark-ink min-w-0 focus-halo rounded-[3px]"
         >
@@ -36,7 +37,7 @@ export function SiteHeader() {
             <br />
             Autos
           </span>
-        </a>
+        </Link>
 
         <div className="hidden sm:flex items-center gap-5 flex-none">
           <a
@@ -46,7 +47,7 @@ export function SiteHeader() {
             <PhoneIcon className="w-[18px] h-[18px] text-amber" />
             {business.phoneDisplay}
           </a>
-          <CtaLink href="#appointment" size="sm">
+          <CtaLink href="/#appointment" size="sm">
             Book Now
           </CtaLink>
         </div>

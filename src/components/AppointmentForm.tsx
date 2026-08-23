@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useActionState, useEffect, useRef } from "react";
 import { submitAppointment, type AppointmentActionState } from "@/lib/appointment-action";
 import { serviceTypeOptions, urgencyOptions } from "@/lib/business";
@@ -140,6 +141,13 @@ export function AppointmentForm() {
       <p className="mt-4.5 text-[0.8125rem] text-ink-mute italic">
         Submitting a request does not guarantee an appointment. We will contact you to confirm
         availability and pricing.
+      </p>
+      <p className="mt-2 text-[0.8125rem] text-ink-mute">
+        We&apos;ll only use these details to respond to your enquiry. See our{" "}
+        <Link href="/privacy" className="underline hover:text-amber-text">
+          Privacy Policy
+        </Link>
+        .
       </p>
     </form>
   );
