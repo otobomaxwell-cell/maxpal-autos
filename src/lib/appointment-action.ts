@@ -3,6 +3,7 @@
 import { Resend } from "resend";
 import { z } from "zod";
 import { business, serviceTypeOptions, urgencyOptions } from "@/lib/business";
+import { verifyTurnstileToken } from "@/lib/turnstile";
 
 const urgencyValues = urgencyOptions.map((option) => option.value) as [string, ...string[]];
 const serviceTypeValues = serviceTypeOptions.map((option) => option.value) as [string, ...string[]];
@@ -16,6 +17,7 @@ const appointmentSchema = z.object({
   need: z.string().trim().max(2000).optional(),
   urgency: z.enum(urgencyValues).optional(),
   serviceType: z.enum(serviceTypeValues).optional(),
+  "cf-turnstile-response": z.string().min(1, "Verification failed. Please try again."),
 });
 
 export type AppointmentActionState =
@@ -43,7 +45,22 @@ export async function submitAppointment(
     return { status: "error", message };
   }
 
-  const { name, email, phone, registration, postcode, need, urgency, serviceType } = parsed.data;
+  const {
+    name,
+    email,
+    phone,
+    registration,
+    postcode,
+    need,
+    urgency,
+    serviceType,
+    "cf-turnstile-response": turnstileToken,
+  } = parsed.data;
+
+  const isHuman = await verifyTurnstileToken(turnstileToken);
+  if (!isHuman) {
+    return { status: "error", message: "Verification failed. Please try again." };
+  }
 
   const apiKey = process.env.RESEND_API_KEY;
   if (!apiKey) {

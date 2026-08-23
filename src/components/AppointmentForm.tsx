@@ -1,12 +1,15 @@
 "use client";
 
 import Link from "next/link";
+import Script from "next/script";
 import { useActionState, useEffect, useRef } from "react";
 import { submitAppointment, type AppointmentActionState } from "@/lib/appointment-action";
 import { serviceTypeOptions, urgencyOptions } from "@/lib/business";
 import { CtaButton } from "./ui/Cta";
 
 const initialState: AppointmentActionState = { status: "idle" };
+
+const turnstileSiteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
 
 const fieldClasses = "w-full text-base px-3.5 py-3 border border-line rounded-[3px] bg-surface-2 text-ink focus-halo";
 
@@ -127,6 +130,13 @@ export function AppointmentForm() {
           </div>
         </fieldset>
       </div>
+
+      {turnstileSiteKey && (
+        <>
+          <Script src="https://challenges.cloudflare.com/turnstile/v0/api.js" strategy="afterInteractive" async defer />
+          <div className="cf-turnstile mb-4.5" data-sitekey={turnstileSiteKey} />
+        </>
+      )}
 
       <CtaButton type="submit" block ariaDisabled={isPending}>
         {isPending ? "Sending…" : "Request an Appointment"}
