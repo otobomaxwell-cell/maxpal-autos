@@ -65,25 +65,34 @@ export function AppointmentForm() {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-5 mb-5">
         <div>
+          <label htmlFor="email" className={labelClasses}>
+            Email address
+            {requiredMark}
+          </label>
+          <input id="email" name="email" type="email" autoComplete="email" required className={fieldClasses} />
+        </div>
+        <div>
           <label htmlFor="phone" className={labelClasses}>
             Phone number
             {requiredMark}
           </label>
           <input id="phone" name="phone" type="tel" autoComplete="tel" required className={fieldClasses} />
         </div>
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-5 mb-5">
         <div>
           <label htmlFor="registration" className={labelClasses}>
             Vehicle registration
           </label>
           <input id="registration" name="registration" type="text" className={fieldClasses} />
         </div>
-      </div>
-
-      <div className="mb-5">
-        <label htmlFor="postcode" className={labelClasses}>
-          Your postcode
-        </label>
-        <input id="postcode" name="postcode" type="text" autoComplete="postal-code" className={fieldClasses} />
+        <div>
+          <label htmlFor="postcode" className={labelClasses}>
+            Your postcode
+          </label>
+          <input id="postcode" name="postcode" type="text" autoComplete="postal-code" className={fieldClasses} />
+        </div>
       </div>
 
       <div className="mb-5">

@@ -9,6 +9,7 @@ const serviceTypeValues = serviceTypeOptions.map((option) => option.value) as [s
 
 const appointmentSchema = z.object({
   name: z.string().trim().min(1, "Name is required.").max(200),
+  email: z.string().trim().min(1, "Email address is required.").email("Enter a valid email address.").max(320),
   phone: z.string().trim().min(1, "Phone number is required.").max(40),
   registration: z.string().trim().max(20).optional(),
   postcode: z.string().trim().max(20).optional(),
@@ -42,7 +43,7 @@ export async function submitAppointment(
     return { status: "error", message };
   }
 
-  const { name, phone, registration, postcode, need, urgency, serviceType } = parsed.data;
+  const { name, email, phone, registration, postcode, need, urgency, serviceType } = parsed.data;
 
   const apiKey = process.env.RESEND_API_KEY;
   if (!apiKey) {
@@ -57,8 +58,10 @@ export async function submitAppointment(
     from: `${business.name} Website <${fromEmail}>`,
     to: business.notificationEmail,
     subject: `New appointment request – ${singleLine(name)}`,
+    replyTo: email,
     text: [
       `Name: ${name}`,
+      `Email: ${email}`,
       `Phone: ${phone}`,
       `Vehicle registration: ${registration || "—"}`,
       `Postcode: ${postcode || "—"}`,
