@@ -1,6 +1,21 @@
+export const DayOfWeek = {
+  MONDAY: "Monday",
+  TUESDAY: "Tuesday",
+  WEDNESDAY: "Wednesday",
+  THURSDAY: "Thursday",
+  FRIDAY: "Friday",
+  SATURDAY: "Saturday",
+  SUNDAY: "Sunday",
+} as const;
+export type DayOfWeek = (typeof DayOfWeek)[keyof typeof DayOfWeek];
+
 export type BusinessHours = {
   readonly label: string;
   readonly value: string;
+  readonly days: readonly DayOfWeek[];
+  // 24h "HH:mm"; omitted when the day has no fixed opening hours (e.g. by-appointment-only).
+  readonly opens?: string;
+  readonly closes?: string;
 };
 
 export const business = {
@@ -13,17 +28,28 @@ export const business = {
   phoneDisplay: "07931 306367",
   phoneHref: "tel:+447931306367",
   addressLines: ["555 Osmaston Rd, Allenton", "Derby, DE24 8NE"] as const,
-  postcode: "DE24",
+  postcode: "DE24 8NE",
   serviceRadiusMiles: 10,
   hours: [
-    { label: "Monday - Saturday", value: "8:00 AM - 6:00 PM" },
-    { label: "Sunday", value: "Priority appointments only" },
+    {
+      label: "Monday - Saturday",
+      value: "8:00 AM - 6:00 PM",
+      days: [
+        DayOfWeek.MONDAY,
+        DayOfWeek.TUESDAY,
+        DayOfWeek.WEDNESDAY,
+        DayOfWeek.THURSDAY,
+        DayOfWeek.FRIDAY,
+        DayOfWeek.SATURDAY,
+      ],
+      opens: "08:00",
+      closes: "18:00",
+    },
+    { label: "Sunday", value: "Priority appointments only", days: [DayOfWeek.SUNDAY] },
   ] as const satisfies readonly BusinessHours[],
   priorityHoursNote:
-    "Priority enquiries accepted until 9:00 PM during current summer hours. Availability varies depending on workload and the repair required.",
+    "Priority enquiries accepted until 10:00 PM during current summer hours. Availability varies depending on workload and the repair required.",
   googleReviewsHref: "https://www.google.com/maps?cid=7245540820705023155",
-  // Google Business Profile "write a review" short link, for post-service
-  // follow-ups (email/SMS) rather than this on-page reviews CTA.
   googleWriteReviewHref: "https://g.page/r/CbMUt-f8VI1kEBE/review",
   directionsHref:
     "https://www.google.com/maps/dir//Maxpal+Autos+Ltd,+555+Osmaston+Rd,+Allenton,+Derby+DE24+8NE/@52.9145861,-1.4699676,12z/data=!4m8!4m7!1m0!1m5!1m1!1s0x4879f1d19b26e6f9:0x648d54fce7b714b3!2m2!1d-1.4572917!2d52.8988537?hl=en-GB&entry=ttu",

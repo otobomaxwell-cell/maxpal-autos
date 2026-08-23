@@ -15,8 +15,8 @@ export function LocalBusinessSchema() {
     },
     openingHoursSpecification: business.hours.map((entry) => ({
       "@type": "OpeningHoursSpecification",
-      dayOfWeek: entry.label,
-      description: entry.value,
+      dayOfWeek: entry.days.map((day) => `http://schema.org/${day}`),
+      ...("opens" in entry && "closes" in entry ? { opens: entry.opens, closes: entry.closes } : {}),
     })),
   };
 
