@@ -10,7 +10,7 @@ export const DEFAULT_DESCRIPTION =
 // metadataBase never throws in dev or before the site is deployed.
 export const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 
-const DEFAULT_OG_IMAGE = "/og-image.png";
+const DEFAULT_OG_IMAGE = "/assets/og-image.png";
 
 export type BuildSeoMetadataProps = {
   readonly title?: string;

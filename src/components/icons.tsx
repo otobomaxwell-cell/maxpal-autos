@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import type { ReactNode, SVGProps } from "react";
 
 export type IconProps = {
   readonly className?: string;
@@ -80,7 +80,13 @@ export function CheckIcon({ className }: IconProps) {
 
 export function StarIcon({ className }: IconProps) {
   return (
-    <svg className={className} viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true">
+    <svg
+      className={className}
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      stroke="none"
+      aria-hidden="true"
+    >
       <path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.6 6.1 20.6l1.3-6.6-4.9-4.6 6.6-.8L12 2.5Z" />
     </svg>
   );
@@ -174,5 +180,25 @@ export function VanIcon({ className }: IconProps) {
       <circle cx="7.5" cy="17.5" r="1.6" />
       <circle cx="17" cy="17.5" r="1.6" />
     </StrokeIcon>
+  );
+}
+
+export type MpSymbolProps = {
+  height?: number;
+  disabled?: boolean;
+} & SVGProps<SVGSVGElement>;
+
+export function MpSymbol({ height = 36, ...props }: MpSymbolProps) {
+  return (
+    <svg viewBox="0 273 950 404" preserveAspectRatio="xMidYMid meet" height={height} {...props}>
+      <g className="fill-ink">
+        <polygon points="-0,676.95 126.48,676.93 299.66,379.87 407.44,378.79 472.63,273.07 242.21,273.24" />
+        <polygon points="482.34,676.95 608.81,676.93 721.81,483.12 800.21,347.29 809.23,273.29 724.54,273.24" />
+        <path d="M892.92 273.67l-105.13 -0.48 -40.44 73.9 71.09 0.33c33.61,0.15 44.55,14.1 20.29,58.43l-9.35 17.09c-24.77,45.26 -50.63,58.57 -83.8,58.42l-4.2 -0.02 -37.6 69.28 37.06 0.17c53,0.24 118.33,-40.2 153.96,-105.33l33.36 -60.96c35.64,-65.12 30.25,-110.52 -35.24,-110.83zm-170.27 207.58l-44.29 -0.2 -37.91 69.28 41.96 0.19 40.23 -69.27z" />
+      </g>
+      <g className="fill-brand-deep">
+        <polygon points="239.92,676.95 366.4,676.93 539.58,379.87 647.36,378.79 712.55,273.07 482.13,273.24" />
+      </g>
+    </svg>
   );
 }
