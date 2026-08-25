@@ -5,8 +5,8 @@ import { CtaLink } from "./ui/Cta";
 export function FinalCta() {
   return (
     <section id="final-cta" className="bg-dark text-dark-ink py-14 sm:py-20">
-      <div className="mx-auto max-w-[1180px] px-6">
-        <p className="font-mono text-[0.8125rem] tracking-[0.14em] uppercase text-amber font-semibold mb-3.5">
+      <div className="mx-auto max-w-295 px-6">
+        <p className="font-mono text-[0.8125rem] tracking-[0.14em] uppercase text-brand font-semibold mb-3.5">
           Ready to Get Your Car Sorted?
         </p>
         <h2 className="text-[clamp(1.75rem,3.6vw,2.75rem)] leading-[1.04] mb-5 max-w-[22ch]">
@@ -19,12 +19,12 @@ export function FinalCta() {
 
         <div className="flex flex-wrap items-center gap-6">
           <div className="flex items-center gap-3">
-            <span className="w-11 h-11 rounded-full bg-dark-2 border border-dark-line flex items-center justify-center text-amber">
-              <PhoneIcon className="w-[18px] h-[18px]" />
+            <span className="w-11 h-11 rounded-full bg-dark-2 border border-dark-line flex items-center justify-center text-brand">
+              <PhoneIcon className="size-4.5" />
             </span>
             <a
               href={business.phoneHref}
-              className="font-mono text-2xl font-semibold hover:text-amber focus-halo rounded-[3px]"
+              className="font-mono text-2xl font-semibold hover:text-brand focus-halo rounded-[3px]"
             >
               {business.phoneDisplay}
             </a>

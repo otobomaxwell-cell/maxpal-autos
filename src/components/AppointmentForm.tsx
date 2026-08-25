@@ -11,12 +11,14 @@ const initialState: AppointmentActionState = { status: "idle" };
 
 const turnstileSiteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
 
-const fieldClasses = "w-full text-base px-3.5 py-3 border border-line rounded-[3px] bg-surface-2 text-ink focus-halo";
+const fieldClasses =
+  "w-full text-base px-3.5 py-3 border border-line rounded-[3px] bg-surface-2 text-ink focus-halo";
 
-const labelClasses = "block text-[0.8125rem] font-semibold uppercase tracking-wide text-ink-mute mb-2";
+const labelClasses =
+  "block text-[0.8125rem] font-semibold uppercase tracking-wide text-ink-mute mb-2";
 
 const requiredMark = (
-  <span aria-hidden="true" className="text-red">
+  <span aria-hidden="true" className="text-error">
     {" "}
     *
   </span>
@@ -38,9 +40,13 @@ export function AppointmentForm() {
     return (
       <div
         role="status"
-        className="bg-surface p-8 sm:p-10 flex flex-col items-center text-center justify-center h-full"
+        className="bg-surface p-6 sm:p-10 flex flex-col items-center text-center justify-center h-full"
       >
-        <h3 ref={successHeadingRef} tabIndex={-1} className="text-xl tracking-wide mb-2.5 focus:outline-none">
+        <h3
+          ref={successHeadingRef}
+          tabIndex={-1}
+          className="text-xl tracking-wide mb-2.5 focus:outline-none"
+        >
           Request sent
         </h3>
         <p className="text-ink-mute max-w-[42ch]">
@@ -52,7 +58,7 @@ export function AppointmentForm() {
   }
 
   return (
-    <form ref={formRef} className="bg-surface p-8 sm:p-10" action={formAction}>
+    <form ref={formRef} className="bg-surface p-6 sm:p-10" action={formAction}>
       <h3 className="text-xl tracking-wide mb-1">Or Request an Appointment</h3>
       <p className="text-[0.8125rem] text-ink-mute mb-6">
         Fields marked
@@ -64,27 +70,48 @@ export function AppointmentForm() {
           Your name
           {requiredMark}
         </label>
-        <input id="name" name="name" type="text" autoComplete="name" required className={fieldClasses} />
+        <input
+          id="name"
+          name="name"
+          type="text"
+          autoComplete="name"
+          required
+          className={fieldClasses}
+        />
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-5 mb-5">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-5">
         <div>
           <label htmlFor="email" className={labelClasses}>
             Email address
             {requiredMark}
           </label>
-          <input id="email" name="email" type="email" autoComplete="email" required className={fieldClasses} />
+          <input
+            id="email"
+            name="email"
+            type="email"
+            autoComplete="email"
+            required
+            className={fieldClasses}
+          />
         </div>
         <div>
           <label htmlFor="phone" className={labelClasses}>
             Phone number
             {requiredMark}
           </label>
-          <input id="phone" name="phone" type="tel" autoComplete="tel" required className={fieldClasses} />
+          <input
+            id="phone"
+            name="phone"
+            type="tel"
+            autoComplete="tel"
+            required
+            className={fieldClasses}
+          />
         </div>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-5 mb-5">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-5">
         <div>
           <label htmlFor="registration" className={labelClasses}>
             Vehicle registration
@@ -95,7 +122,13 @@ export function AppointmentForm() {
           <label htmlFor="postcode" className={labelClasses}>
             Your postcode
           </label>
-          <input id="postcode" name="postcode" type="text" autoComplete="postal-code" className={fieldClasses} />
+          <input
+            id="postcode"
+            name="postcode"
+            type="text"
+            autoComplete="postal-code"
+            className={fieldClasses}
+          />
         </div>
       </div>
 
@@ -106,13 +139,18 @@ export function AppointmentForm() {
         <textarea id="need" name="need" rows={3} className={`${fieldClasses} resize-y`} />
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-5 mb-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-6">
         <fieldset>
           <legend className={labelClasses}>How soon do you need it repaired?</legend>
           <div className="flex flex-col gap-2">
             {urgencyOptions.map((option) => (
               <label key={option.value} className="flex items-center gap-2.5 text-[0.9375rem]">
-                <input type="radio" name="urgency" value={option.value} className="size-6 accent-amber-deep" />
+                <input
+                  type="radio"
+                  name="urgency"
+                  value={option.value}
+                  className="size-6 accent-brand-deep"
+                />
                 {option.label}
               </label>
             ))}
@@ -123,7 +161,12 @@ export function AppointmentForm() {
           <div className="flex flex-col gap-2">
             {serviceTypeOptions.map((option) => (
               <label key={option.value} className="flex items-center gap-2.5 text-[0.9375rem]">
-                <input type="radio" name="serviceType" value={option.value} className="size-6 accent-amber-deep" />
+                <input
+                  type="radio"
+                  name="serviceType"
+                  value={option.value}
+                  className="size-6 accent-brand-deep"
+                />
                 {option.label}
               </label>
             ))}
@@ -133,7 +176,12 @@ export function AppointmentForm() {
 
       {turnstileSiteKey && (
         <>
-          <Script src="https://challenges.cloudflare.com/turnstile/v0/api.js" strategy="afterInteractive" async defer />
+          <Script
+            src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+            strategy="afterInteractive"
+            async
+            defer
+          />
           <div className="cf-turnstile mb-4.5" data-sitekey={turnstileSiteKey} />
         </>
       )}
@@ -143,7 +191,7 @@ export function AppointmentForm() {
       </CtaButton>
 
       {state.status === "error" && (
-        <p role="alert" className="mt-3 text-sm text-red font-semibold">
+        <p role="alert" className="mt-3 text-sm text-error font-semibold">
           {state.message}
         </p>
       )}
@@ -154,7 +202,7 @@ export function AppointmentForm() {
       </p>
       <p className="mt-2 text-[0.8125rem] text-ink-mute">
         We&apos;ll only use these details to respond to your enquiry. See our{" "}
-        <Link href="/privacy" className="underline hover:text-amber-text">
+        <Link href="/privacy" className="underline hover:text-brand-text">
           Privacy Policy
         </Link>
         .

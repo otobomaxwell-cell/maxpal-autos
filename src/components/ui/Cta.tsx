@@ -7,8 +7,8 @@ const base =
   "inline-flex items-center gap-2.5 font-display font-bold uppercase tracking-wide rounded-[3px] transition-colors duration-150 focus-halo";
 
 const variantClasses: Record<CtaVariant, string> = {
-  primary: "bg-amber text-amber-ink hover:bg-amber-deep",
-  outline: "bg-transparent border-2 border-current hover:bg-amber/10",
+  primary: "bg-brand text-brand-ink hover:bg-brand-deep",
+  outline: "bg-transparent border-2 border-current hover:bg-brand/10",
   dark: "bg-dark text-dark-ink hover:bg-black",
 };
 
@@ -48,7 +48,11 @@ export function CtaLink({
       href={href}
       target={external ? "_blank" : undefined}
       rel={external ? "noopener noreferrer" : undefined}
-      className={ctaClasses(variant, size, `${block ? "justify-center w-full" : ""} ${className ?? ""}`)}
+      className={ctaClasses(
+        variant,
+        size,
+        `${block ? "justify-center w-full" : ""} ${className ?? ""}`,
+      )}
     >
       {children}
       {external && <span className="sr-only"> (opens in a new tab)</span>}

@@ -1,7 +1,8 @@
 @import "tailwindcss";
 
 /*
-  Committed single-look brand palette (asphalt / steel / hazard amber).
+  Committed single-look brand palette (asphalt / steel / racing red),
+  matched to the Maxpal Autos logo's hazard red (#FF0009).
   Deliberately does not respond to prefers-color-scheme — a garage brand
   doesn't reflow for OS dark mode, matching the design-mockup decision.
 */
@@ -19,19 +20,14 @@
   --color-ink-mute: #565a62;
   --color-line: #d5d7da;
 
-  --color-amber: #f2a31e;
-  --color-amber-deep: #c77e0e;
-  /* Darker amber for small text on light surfaces: amber-deep is only
-     3.27:1/2.77:1 on white/bg-bg (fails 4.5:1). This passes 6.16:1/5.22:1.
-     amber-deep stays correct for icons/fills, which only need 3:1. */
-  --color-amber-text: #915209;
-  --color-amber-ink: #1b1300;
-  --color-red: #c43b2c;
+  --color-brand: #ff242b;
+  --color-brand-deep: #ff0009;
+  --color-brand-text: #cc0007;
+  --color-brand-ink: #1a0000;
+  --color-error: #c43b2c;
 
-  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
-    Arial, sans-serif;
-  --font-mono: ui-monospace, "SF Mono", "Roboto Mono", Consolas,
-    "Liberation Mono", monospace;
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", "Roboto Mono", Consolas, "Liberation Mono", monospace;
   --font-display: var(--font-oswald), "Arial Narrow", Impact, sans-serif;
 }
 
@@ -58,26 +54,12 @@
 
   @media (max-width: 639px) {
     section {
-      /* Clears the fixed bottom call bar (StickyCallBar, ~64px incl. border)
-         so an anchor-jumped or focused element doesn't land underneath it. */
       scroll-margin-bottom: 76px;
     }
   }
 }
 
 @layer utilities {
-  /*
-    Double-ring focus style: a white ring immediately against the white
-    element edge, plus a dark ring around that. Both always render; whichever
-    ring contrasts with the surrounding page background is the one a sighted
-    keyboard user actually sees. This page uses three ground colors (dark
-    asphalt, light steel, amber) and no single ring color passes 3:1 against
-    all three - amber-on-amber is ~1:1, amber-on-white is ~2.1:1 - so a single
-    outline color can't work here. White + dark together cover all three:
-    white shows against dark asphalt, dark shows against light steel and
-    against amber (dark-on-amber is ~8.5:1, the same pairing already used for
-    amber-ink text on amber elsewhere in this design).
-  */
   .focus-halo {
     outline: none;
   }
