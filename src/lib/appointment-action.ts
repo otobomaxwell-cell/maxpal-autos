@@ -10,7 +10,12 @@ const serviceTypeValues = serviceTypeOptions.map((option) => option.value) as [s
 
 const appointmentSchema = z.object({
   name: z.string().trim().min(1, "Name is required.").max(200),
-  email: z.string().trim().min(1, "Email address is required.").email("Enter a valid email address.").max(320),
+  email: z
+    .string()
+    .trim()
+    .min(1, "Email address is required.")
+    .max(320)
+    .pipe(z.email("Enter a valid email address.")),
   phone: z.string().trim().min(1, "Phone number is required.").max(40),
   registration: z.string().trim().max(20).optional(),
   postcode: z.string().trim().max(20).optional(),
@@ -29,11 +34,7 @@ function singleLine(value: string): string {
   return value.replace(/[\r\n]+/g, " ").trim();
 }
 
-// Server Actions are POST endpoints reachable by anyone who can send the
-// same request, not just through this form - see Next's server-actions
-// guide. Framework-level CSRF/origin checks apply automatically, but input
-// validation is still entirely on us, same as the Route Handler this
-// replaced.
+// "Server Actions are POST endpoints reachable by anyone who can send the same request, not just through this form.
 export async function submitAppointment(
   _prevState: AppointmentActionState,
   formData: FormData,
